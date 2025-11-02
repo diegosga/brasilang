@@ -20,7 +20,7 @@ public enum EnumTokenType {
     AND("e"),
     OR("ou"),
     NOT("nao"),
-    STRINGLIT("fio")
+    STRINGLIT("fio"),
 
 
     // demais tokens
