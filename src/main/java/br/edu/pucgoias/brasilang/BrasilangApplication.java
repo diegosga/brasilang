@@ -37,7 +37,8 @@ public class BrasilangApplication {
         imprima("--- Testando Vetores ---");
         inteiro meuVetor[5];
         inteiro i = 0;
-        fio string = "Ola mundo";
+        fio string1 = "Ola mundo";
+        fio string2 = "Tchau mundo";
 
         enquanto (i < 5) {
           meuVetor[i] = i * 10;
@@ -70,9 +71,9 @@ public class BrasilangApplication {
         } senao {
             imprima("deu verdadeiro");
           
-          imprima(maiusculo(string));
-          imprima(minusculo(string));]
-          imprima(tamanho(string));
+          imprima(copiar(string1, string2));
+          imprima(comparar(string1, string2));
+          imprima(concatenar(string1, string2));
           imprima(string + "," + "essa é a string");
         }
         """;
