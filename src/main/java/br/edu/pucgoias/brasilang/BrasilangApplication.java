@@ -37,6 +37,7 @@ public class BrasilangApplication {
         imprima("--- Testando Vetores ---");
         inteiro meuVetor[5];
         inteiro i = 0;
+        fio string = "Ola mundo";
 
         enquanto (i < 5) {
           meuVetor[i] = i * 10;
@@ -68,6 +69,11 @@ public class BrasilangApplication {
             imprima("deu falso");
         } senao {
             imprima("deu verdadeiro");
+          
+          imprima(maiusculo(string));
+          imprima(minusculo(string));]
+          imprima(tamanho(string));
+          imprima(string + "," + "essa é a string");
         }
         """;
     Lexer lexer = new Lexer(src);

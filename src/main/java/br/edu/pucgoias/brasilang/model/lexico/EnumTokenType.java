@@ -20,10 +20,11 @@ public enum EnumTokenType {
     AND("e"),
     OR("ou"),
     NOT("nao"),
+    STRINGLIT("fio")
 
 
     // demais tokens
-    ID, INTLIT, FLOATLIT, STRINGLIT,
+    ID, INTLIT, FLOATLIT,
     LPAR, RPAR, LBRACE, RBRACE, LBRACK, RBRACK, COLON, SEMI, COMMA,
     ASSIGN, PLUS, MINUS, STAR, SLASH,
     LT, LE, GT, GE, EQ, NEQ,

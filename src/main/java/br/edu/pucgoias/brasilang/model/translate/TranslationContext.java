@@ -47,6 +47,7 @@ public class TranslationContext {
             case DOUBLE -> "double";
             case VOID -> "void";
             case BOOL -> "int"; 
+            case STRINGLIT -> "char*";
             default -> "int";
         };
     }
