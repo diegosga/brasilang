@@ -46,10 +46,13 @@ public class TranslationContext {
             case FLOAT -> "float";
             case DOUBLE -> "double";
             case VOID -> "void";
-            case BOOL -> "int"; 
-            case STRINGLIT -> "char*";
-            default -> "int";
+            case BOOL -> {
+                this.addInclude("<stdbool.h>");
+                yield "bool";
+            }
+            case CHAR -> "char";
+            case STRING -> "char*";
+            default -> throw new IllegalArgumentException("Tipo de token não mapeado para C: " + type);
         };
     }
-
 }

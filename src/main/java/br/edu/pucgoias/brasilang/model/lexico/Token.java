@@ -13,8 +13,7 @@ public class Token {
         this.col = col;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         return type + "('" + lexeme + "')@" + line + ":" + col;
     }
 }

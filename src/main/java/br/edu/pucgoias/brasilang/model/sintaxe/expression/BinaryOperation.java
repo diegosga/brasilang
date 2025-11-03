@@ -15,12 +15,7 @@ public class BinaryOperation implements AbstractExpression{
 
         @Override
         public String translate(TranslationContext ctx) {
-                String op = switch (operator) {
-                        case "e" -> "&&";
-                        case "ou" -> "||";
-                        default -> operator; // outros operadores permanecem iguais
-                };
-                return leftExpression.translate(ctx) + " " + op + " " + rightExpression.translate(ctx);
+                return leftExpression.translate(ctx) + " " + operator + " " + rightExpression.translate(ctx);
         }
 
         @Override

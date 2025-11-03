@@ -13,6 +13,8 @@ public enum EnumTokenType {
     INT("inteiro"),
     FLOAT("flutuante"),
     DOUBLE("duplo"),
+    CHAR("caractere"),
+    STRING("string"),
     VOID("vazio"),
     BOOL("booleano"),
     TRUE("verdadeiro"),
@@ -20,11 +22,9 @@ public enum EnumTokenType {
     AND("e"),
     OR("ou"),
     NOT("nao"),
-    STRINGLIT("fio"),
-
 
     // demais tokens
-    ID, INTLIT, FLOATLIT,
+    ID, INTLIT, FLOATLIT, STRINGLIT, CHARLIT,
     LPAR, RPAR, LBRACE, RBRACE, LBRACK, RBRACK, COLON, SEMI, COMMA,
     ASSIGN, PLUS, MINUS, STAR, SLASH,
     LT, LE, GT, GE, EQ, NEQ,
@@ -53,9 +53,5 @@ public enum EnumTokenType {
      */
     public static EnumTokenType resolve(String id) {
         return BY_LEXEME.get(id);
-    }
-
-    public boolean isKeyword() {
-        return lexemes != null && lexemes.length > 0;
     }
 }
