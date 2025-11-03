@@ -18,18 +18,6 @@ public class FunctionCall implements AbstractExpression {
 
     @Override
     public String translate(TranslationContext ctx) {
-         
-        switch (name) {
-            case "comparar":
-                return "strcmp("+arguments.get(0).translate(ctx) +","+ arguments.get(1).translate(ctx)+")";
-            case "copiar":
-                return "strcpy("+arguments.get(0).translate(ctx) +","+ arguments.get(1).translate(ctx)+")";
-            case "concatenar":
-                return "strcat(" + arguments.get(0).translate(ctx)+","+arguments.get(1).translate(ctx)+")";
-            default:
-                break;
-        }
-
         return name + "(" + arguments.stream()
                 .map(a -> a.translate(ctx))
                 .collect(Collectors.joining(", ")) + ")";

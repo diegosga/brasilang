@@ -19,76 +19,61 @@ import jakarta.annotation.PostConstruct;
 @SpringBootApplication
 public class BrasilangApplication {
 
-  public static void main(String[] args) {
-    SpringApplication.run(BrasilangApplication.class, args);
-  }
+	public static void main(String[] args) {
+		SpringApplication.run(BrasilangApplication.class, args);
+	}
 
-  @Autowired
-  LexerService lexerService;
-  @Autowired
-  SintaxeService sintaxeService;
-  @Autowired
-  TranslateService translateService;
+	@Autowired
+	LexerService lexerService;
+	@Autowired
+	SintaxeService sintaxeService;
+	@Autowired
+	TranslateService translateService;
+	
+    @PostConstruct
+    void executar() {
+        /*String src = """
+                        inteiro g = 10;
+                        flutuante f = 1.5;
+                        inteiro i = 0;
+                        para (i < 3) {
+                          imprima(i);
+                          i = i + 1;
+                        }
+                        enquanto (g > 0) {
+                          se (g == 5) {
+                            imprima("metade");
+                          } senao {
+                            imprima(g);
+                          }
+                          g = g - 1;
+                        }
+                        imprima(f);
+                                caractere letra = 'B';
+                        imprima(letra);
+                        string saudacao = "Ola, Brasilang!";
+                        string s2= "Brasilang desliga";
+                        imprima(saudacao);
+                        imprima("\\nFim dos testes.");
+                        """;*/
+                        String src = """
+                            string saudacao = "Ola, Brasilang!";
+                            string s2= "Brasilang desliga";
+                            imprima(copiar(saudacao, s2));
+                            
+                            """;
+        Lexer lexer = new Lexer(src);
+        List<Token> tokenList = lexerService.buildTokenList(lexer);
 
-  @PostConstruct
-  void executar() {
-    String src = """
-        // Teste de Vetores (Arrays)
-        imprima("--- Testando Vetores ---");
-        inteiro meuVetor[5];
-        inteiro i = 0;
-        fio string1 = "Ola mundo";
-        fio string2 = "Tchau mundo";
+        tokenList.forEach(token -> System.out.println(token.toString()));
+        Sintaxe sintaxe = new Sintaxe(tokenList);
+        List<AbstractStatement> statements = sintaxeService.buildProgramStatementList(sintaxe);
 
-        enquanto (i < 5) {
-          meuVetor[i] = i * 10;
-          imprima(meuVetor[i]);
-          i = i + 1;
-        }
+        statements.forEach(statement -> System.out.println(statement.toString()));
 
-        imprima("Fim do teste de vetores.");
+        Program program = new Program(statements);
+        String cCode = translateService.generateCode(program);
+        System.out.println(cCode);
 
-        imprima("\n");
-
-        // Teste do 'repita'
-        inteiro contador_repita = 0;
-        repita {
-          imprima(contador_repita);
-          contador_repita = contador_repita + 1;
-        } enquanto (contador_repita < 3);
-        imprima("Fim do teste 'repita'.");
-
-        // Teste booleano
-        inteiro teste = 1;
-        se (teste == 1) {
-        
-        imprima("/n");
-        imprima("\n");
-        //teste booleano
-        inteiro teste = 1; 
-        se (teste e 0) {
-            imprima("deu falso");
-        } senao {
-            imprima("deu verdadeiro");
-          
-          imprima(copiar(string1, string2));
-          imprima(comparar(string1, string2));
-          imprima(concatenar(string1, string2));
-          imprima(string + "," + "essa é a string");
-        }
-        """;
-    Lexer lexer = new Lexer(src);
-    List<Token> tokenList = lexerService.buildTokenList(lexer);
-
-    tokenList.forEach(token -> System.out.println(token.toString()));
-    Sintaxe sintaxe = new Sintaxe(tokenList);
-    List<AbstractStatement> statements = sintaxeService.buildProgramStatementList(sintaxe);
-
-    statements.forEach(statement -> System.out.println(statement.toString()));
-
-    Program program = new Program(statements);
-    String cCode = translateService.generateCode(program);
-    System.out.println(cCode);
-
-  }
+    }
 }
